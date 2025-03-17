@@ -1,12 +1,9 @@
-import { serve } from '@hono/node-server';
-import { Hono } from 'hono';
-const app = new Hono();
-app.get('/', (c) => {
-    return c.text('Hello Hono!');
-});
-serve({
-    fetch: app.fetch,
-    port: 3000
-}, (info) => {
-    console.log(`Server is running on http://localhost:${info.port}`);
-});
+import axios from 'axios';
+const baseUrl = "https://a90b05cb-e593-4a77-a500-82b909c678f2.mock.pstmn.io/cities";
+try {
+    const response = await axios.get(`$(baseUrl)`);
+    console.log(response.data);
+}
+catch (error) {
+    console.error(error);
+}
